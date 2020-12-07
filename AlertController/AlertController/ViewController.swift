@@ -7,13 +7,28 @@
 //
 
 import UIKit
+import UserNotifications
 
+@available(iOS 11.0, *)
 class ViewController: UIViewController {
 
     private var alert: UIAlertController!
+    private let dataProvider = DataProvider()
+    private var filePath: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        registerForNotifications()
+        
+        dataProvider.fileLocation = { (location) in
+            // Save your file somewhere, or use it...
+            self.filePath = location.absoluteString
+            self.alert?.dismiss(animated: false)
+            self.postNotification()
+            
+            print("Download finished: \(location.absoluteString)")
+        }
     }
 
 
@@ -29,7 +44,7 @@ class ViewController: UIViewController {
                                         constant: 170)
         alert.view.addConstraint(height)
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.destructive) {(action) in
-
+            self.dataProvider.stopDownload()
         }
         alert.addAction(cancel)
         
@@ -40,20 +55,44 @@ class ViewController: UIViewController {
             activityIndicator.color = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
             activityIndicator.startAnimating()
             
-            let progressView = UIProgressView(frame: CGRect(x: 0, y: self.alert.view.frame.height - 44, width: self.alert.view.frame.width, height: 2))
+            let progressView = UIProgressView(frame: CGRect(x: 0,
+                                                            y: self.alert.view.frame.height - 44,
+                                                            width: self.alert.view.frame.width,
+                                                            height: 2))
             progressView.tintColor = .blue
-            let x = 100
-            for i in 0..<x{
-                progressView.progress = Float(i)
-                self.alert.message = "\(i)%"
+            self.dataProvider.onProgress = { (progres) in
+                progressView.progress = Float(progres)
+                self.alert.message = String(Int(progres * 100)) + "%"
+                
+                if progressView.progress == 1 {
+                    self.alert.dismiss(animated: false)
+                }
             }
-            
-            self.alert.view.addSubview(activityIndicator)
             self.alert.view.addSubview(progressView)
+            self.alert.view.addSubview(activityIndicator)
         }
     }
-    @IBAction func alertButton(_ sender: Any) {
-        showAlert(title: "Download ...", message: "0%", style: .alert)
+    @IBAction func DownloadButton(_ sender: Any) {
+        showAlert(title: "Download ...", message: "0 %", style: .alert)
+        //print("\(String(describing: self.dataProvider.startDownload()))")
     }
 }
 
+@available(iOS 11.0, *)
+extension ViewController {
+    
+    private func registerForNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (_, _) in }
+    }
+    
+    private func postNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Download complete!"
+        content.body = "Your background transfer has completed. File path: \(filePath ?? "")"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "TransferComplete", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+}

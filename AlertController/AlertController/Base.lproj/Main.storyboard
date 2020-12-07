@@ -22,7 +22,7 @@
                                 <rect key="frame" x="20" y="606" width="335" height="41"/>
                                 <color key="backgroundColor" red="0.63419836760000003" green="0.66422641280000005" blue="0.70136672259999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="24"/>
-                                <state key="normal" title="Alert">
+                                <state key="normal" title="Download File">
                                     <color key="titleColor" red="0.99441856145858765" green="0.16272363066673279" blue="0.17067369818687439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -31,11 +31,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="alertButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Uj-CC-Cij"/>
+                                    <action selector="DownloadButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z3G-1T-bsd"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.80960267782211304" green="0.9257960319519043" blue="0.95203095674514771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RCc-SU-zDT" secondAttribute="bottom" constant="20" id="UEC-AG-f4P"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RCc-SU-zDT" secondAttribute="trailing" constant="20" id="XWI-1c-FIj"/>

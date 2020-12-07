@@ -12,6 +12,7 @@
 		C705ED2D257E34300012A187 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C705ED2B257E34300012A187 /* Main.storyboard */; };
 		C705ED2F257E34360012A187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C705ED2E257E34360012A187 /* Assets.xcassets */; };
 		C705ED32257E34360012A187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C705ED30257E34360012A187 /* LaunchScreen.storyboard */; };
+		C710A36D257E76C0008BB2D0 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C710A36C257E76C0008BB2D0 /* DataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		C705ED2E257E34360012A187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C705ED31257E34360012A187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C705ED33257E34360012A187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C710A36C257E76C0008BB2D0 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				C705ED27257E34300012A187 /* AppDelegate.swift */,
 				C705ED29257E34300012A187 /* ViewController.swift */,
+				C710A36C257E76C0008BB2D0 /* DataProvider.swift */,
 				C705ED2B257E34300012A187 /* Main.storyboard */,
 				C705ED2E257E34360012A187 /* Assets.xcassets */,
 				C705ED30257E34360012A187 /* LaunchScreen.storyboard */,
@@ -96,6 +99,11 @@
 				TargetAttributes = {
 					C705ED23257E34300012A187 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -135,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C710A36D257E76C0008BB2D0 /* DataProvider.swift in Sources */,
 				C705ED2A257E34300012A187 /* ViewController.swift in Sources */,
 				C705ED28257E34300012A187 /* AppDelegate.swift in Sources */,
 			);
